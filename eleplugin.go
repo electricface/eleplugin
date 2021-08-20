@@ -105,10 +105,10 @@ func (p *Plugin) lookup(name string) (unsafe.Pointer, error) {
 
 func (p *Plugin) Start(name string) error {
 	if name == "" {
-		name = p.pkgPath + ".PluginStart"
+		name = "PluginStart"
 		// TODO go >= 1.17 need to add .abiinternal
 	}
-	f, err := p.lookup(name)
+	f, err := p.lookup(p.pkgPath + "." + name)
 	if err != nil {
 		return err
 	}
